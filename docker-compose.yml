@@ -1,0 +1,46 @@
+#docker-compose
+#Please keep docker-compose in sync with gitlab-ci.yml
+version: '3'
+services:
+  app:
+    image: registry.gitlab.com/nowi5/wlm:latest
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - .:/srv/app
+    links:
+      - mysql
+      - redis
+    environment:
+      APP_ENV: test
+      DB_HOST: mysql
+      REDIS_HOST: redis
+      SESSION_DRIVER: redis
+      CACHE_DRIVER: redis
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 13306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: homestead
+  redis:
+    image: redis:4.0-alpine
+    ports:
+      - 16379:6379
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_PORT: 3306
+      PMA_HOST: mysql      
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 8080:80
+    links:
+     - mysql

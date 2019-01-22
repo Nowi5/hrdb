@@ -1,0 +1,112 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+html, body {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 500;
+  background-color: #fff;
+  color: #636b6f;
+  height: 100vh;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.navbar-brand img{
+  height: 30px;
+  width: 30px;
+
+}
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+main{
+  min-height: 100%;
+}
+
+.separator{
+  color: $indigo;
+}
+
+.full-height {
+  height: calc(100vh - 120px);
+}
+
+.flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.position-ref {
+  position: relative;
+}
+
+.top-right {
+  position: absolute;
+  right: 10px;
+  top: 18px;
+}
+
+.content {
+  text-align: center;
+}
+
+.title {
+  font-size: 84px;
+}
+
+.links > a {
+  color: #636b6f;
+  padding: 0 25px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.m-b-md {
+  margin-bottom: 30px;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html,body,#app,main {
+  position: relative;
+  min-height: 100%;
+}
+main{
+  padding-bottom: 75px;
+}
+footer.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px;       /* Set the fixed height of the footer here */
+  line-height: 60px;  /* Vertically center the text there */
+  color: $white;
+}
+footer.footer a{
+  color: $white;
+}
+
+.title img{
+  max-height: 60px;
+  vertical-align: baseline;
+  -webkit-filter: opacity(.7);
+  filter:opacity(.7)
+}

@@ -1,0 +1,3 @@
+# https://docs.docker.com/engine/reference/builder/#dockerignore-file
+# Need to include e.g. .htaccess
+!.htaccess
