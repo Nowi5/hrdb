@@ -13556,13 +13556,12 @@ body {
 }
 
 .navbar-brand img {
-  height: 30px;
-  width: 30px;
+  height: 28px;
+  width: 28px;
 }
 
 .navbar-laravel {
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 main {
@@ -13650,5 +13649,35 @@ footer.footer a {
   vertical-align: baseline;
   -webkit-filter: opacity(0.7);
   filter: opacity(0.7);
+}
+
+/* Horizontal navigation for logged in user */
+
+.adminnav a {
+  font-size: 1.2rem;
+}
+
+.adminnav .nav-tabs .nav-link {
+  background: #6574cd;
+  color: #ffffff;
+}
+
+.adminnav .nav-tabs .nav-link.active {
+  background-color: white;
+  color: #6574cd;
+}
+
+.adminnav .nav-tabs {
+  border-bottom: none;
+}
+
+.adminnav .nav-tabs .nav-item {
+  margin-bottom: 0px;
+}
+
+/* Vertical navigation e.g. for documenation */
+
+.vnav li.nav-item.active a.nav-link {
+  color: grey;
 }
 

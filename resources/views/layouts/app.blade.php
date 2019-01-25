@@ -7,6 +7,25 @@
 <div id="app">
     @include('layouts.navbar')
 
+    <div style="background-color:#6574cd" class="adminnav pt-3">
+        <div class="container">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::currentRouteNamed('home') ? 'active' : '' }}" href="{{ route('home') }}"><i class="fa fa-home"></i> {{ __('Dashboard') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('hrdb*') ? 'active' : '' }}" href="{{ route('hrdb.jobpostings') }}">HRDB</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('docu*') ? 'active' : '' }}" href="{{ route('docu.access') }}">API Documentation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::currentRouteNamed('passport') ? 'active' : '' }}" href="{{ route('passport') }}">OAuth</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <main class="py-4">
         @include('layouts.messages')
         @yield('content')

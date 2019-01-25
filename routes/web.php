@@ -29,4 +29,15 @@ Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/passport', function () {  return view('passport.index');  })->name('passport');
+
+    Route::group(['prefix' => '/docu', 'as' => 'docu.'], function () {
+        Route::get('/access', function () {  return view('docu.access');  })->name('access');
+        Route::get('/jobpostings', function () {  return view('docu.jobpostings');  })->name('jobpostings');
+
+    });
+
+    Route::group(['prefix' => '/hrdb', 'as' => 'hrdb.'], function () {
+        Route::get('/jobpostings', function () {  return view('hrdb.jobpostings');  })->name('jobpostings');
+    });
 });

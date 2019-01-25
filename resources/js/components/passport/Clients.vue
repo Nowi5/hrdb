@@ -6,7 +6,7 @@
 
 <template>
     <div>
-        <div class="card card-default">
+        <div class="card card-default mb-3">
             <div class="card-header">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <span>

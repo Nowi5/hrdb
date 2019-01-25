@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Invite;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $invite = Invite::firstOrCreate(
+            ['user_id' => auth()->id()]
+        );
+
+        return view('home', ['inviteToken' => $invite->token]);
     }
 }

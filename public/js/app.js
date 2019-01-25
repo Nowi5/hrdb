@@ -38202,7 +38202,7 @@ var render = function() {
   return _c("div", [
     _vm.tokens.length > 0
       ? _c("div", [
-          _c("div", { staticClass: "card card-default" }, [
+          _c("div", { staticClass: "card card-default mb-3" }, [
             _c("div", { staticClass: "card-header" }, [
               _vm._v("Authorized Applications")
             ]),
@@ -38314,7 +38314,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "card card-default" }, [
+    _c("div", { staticClass: "card card-default mb-3" }, [
       _c("div", { staticClass: "card-header" }, [
         _c(
           "div",
@@ -38883,7 +38883,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", [
-      _c("div", { staticClass: "card card-default" }, [
+      _c("div", { staticClass: "card card-default mb-3" }, [
         _c("div", { staticClass: "card-header" }, [
           _c(
             "div",
