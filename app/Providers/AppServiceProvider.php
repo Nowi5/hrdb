@@ -13,7 +13,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //  https://laravel.com/docs/5.7/eloquent-resources
+        //  Resource::withoutWrapping();
     }
 
     /**

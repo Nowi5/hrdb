@@ -8,6 +8,7 @@
         <div class="card-body">
 
             <p>
+                {{ __('message.tile') }}
                 <strong>Welcome to HRDB,</strong><br/>
                 Please maintain you <a href="">account details</a> first. After that you may like to explore existing job postings.
                 In the next step we recommend that you read the <a href="">API Documentation</a>. With the API you can create and read further job postings.

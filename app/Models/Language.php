@@ -7,6 +7,7 @@ use App\Models\BaseModel;
 
 class Language extends BaseModel
 {
+    use LogsActivity;
 
     protected $table = 'languages';
 

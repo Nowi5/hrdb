@@ -4,9 +4,11 @@ namespace App\Models;
 
 //use Illuminate\Database\Eloquent\Model;
 use App\Models\BaseModel;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Street extends BaseModel
 {
+    use LogsActivity;
 
     protected $table = 'streets';
 
