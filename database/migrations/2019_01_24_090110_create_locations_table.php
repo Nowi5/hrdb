@@ -12,8 +12,11 @@ class CreateLocationsTable extends Migration
      * @return void
      */
 
-    // Of course I'm aware that a few relationships like city -> region -> country & city -> country are redundant
+    // Of course I'm aware that a few relationships like city -> state -> country & city -> country are redundant
     // However, this will improve performance when filtering.
+
+    // @todo: All the names will be replaced in a later stage by translation files and just base on id.
+    // For make it now faster let start with German and Englisch
     public function up()
     {
         Schema::create('languages', function (Blueprint $table) {
@@ -55,11 +58,13 @@ class CreateLocationsTable extends Migration
         });
 
         // Wouldn't be state a better name?
-        Schema::create('regions', function (Blueprint $table) {
+        Schema::create('state', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('code');
             $table->string('name');
             $table->string('name_alternative')->nullable();
             $table->string('name_english')->nullable();
+            $table->unsignedInteger('country_id')->nullable();
             $table->timestamps();
         });
 
@@ -68,14 +73,14 @@ class CreateLocationsTable extends Migration
             $table->string('name');
             $table->string('name_alternative')->nullable();
             $table->string('name_english')->nullable();
-            $table->unsignedInteger('region_id')->nullable();
+            $table->unsignedInteger('state_id')->nullable();
             $table->unsignedInteger('country_id');
             $table->unsignedInteger('postalcode_id');
             $table->timestamps();
 
         });
 
-        // Cities can have more as one postalcode
+        // Postalcodes can have multiple names //todo For later Cities can have more as one postalcode
         Schema::create('postalcodes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code');
@@ -89,7 +94,7 @@ class CreateLocationsTable extends Migration
             $table->string('line3')->nullable();
             $table->unsignedInteger('street_id')->nullable();
             $table->unsignedInteger('number')->nullable();
-            $table->unsignedInteger('city_id');
+            $table->unsignedInteger('city_id'); // Do we need city here if we have postalcode?
             $table->unsignedInteger('postalcode_id');
             $table->timestamps();
         });
@@ -106,7 +111,7 @@ class CreateLocationsTable extends Migration
     {
         Schema::dropIfExists('cities');
         Schema::dropIfExists('postalcodes');
-        Schema::dropIfExists('regions');
+        Schema::dropIfExists('states');
         Schema::dropIfExists('streets');
         Schema::dropIfExists('countries');
         Schema::dropIfExists('languages');

@@ -14,18 +14,19 @@ class Location extends BaseModel
         'line1', 'line2', 'line3', 'number', 'street_id', 'city_id', 'postalcode_id'
     ];
 
+    // Yes, this is double to city, but helps for faster filtering
     public function postalcode()
     {
-        return $this->belongsTo('Models\Postalcode', 'postalcode_id');
+        return $this->belongsTo('App\Models\Postalcode', 'postalcode_id');
     }
 
     public function street()
     {
-        return $this->belongsTo('Models\Street', 'street_id');
+        return $this->belongsTo('App\Models\Street', 'street_id');
     }
 
     public function city()
     {
-        return $this->belongsTo('Models\City', 'city_id');
+        return $this->belongsTo('App\Models\City', 'city_id');
     }
 }

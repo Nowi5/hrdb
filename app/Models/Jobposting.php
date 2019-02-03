@@ -19,16 +19,16 @@ class Jobposting extends BaseModel
 
     public function currency()
     {
-        return $this->belongsTo('Models\Currenxy', 'alary_currency_id');
+        return $this->belongsTo('App\Models\Currenxy', 'alary_currency_id');
     }
 
     public function publisher()
     {
-        return $this->belongsTo('Models\User', 'publisher_id');
+        return $this->belongsTo('App\Models\User', 'publisher_id');
     }
 
     public function location(){
-        return $this->hasMany('Models\Location', 'location_id');
+        return $this->hasMany('App\Models\Location', 'location_id');
     }
 
     // @Todo: Add relationship for Workingtime, Industy, Exerpeiencelevel, Funtionalarea, Company

@@ -9,9 +9,14 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class Postalcode extends BaseModel
 {
     use LogsActivity;
-    protected $table = 'Postalcodes';
+    protected $table = 'postalcodes';
 
     protected $fillable = [
         'code', 'city_id'
     ];
+
+    public function cities()
+    {
+        return $this->hasMany('App\Models\City');
+    }
 }

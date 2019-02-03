@@ -53,10 +53,13 @@ class Install extends Command
         $bar->advance();
         Artisan::call('passport:keys');
         $bar->advance();
-
-        //php artisan passport:client --personal
+        //Artisan::call('passport:client', ['--personal' => 'default']);
 
         $bar->finish();
+
         $this->info("\n Install complete");
+
+        $this->info("\n Please run passport:client --personal manually");
+
     }
 }

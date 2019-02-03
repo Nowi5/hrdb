@@ -25,7 +25,7 @@ class Invite extends BaseModel
 
     public function user()
     {
-        return $this->belongsTo('Models\User', 'user_id');
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
 
     protected static function generateToken($length = 8){

@@ -2,8 +2,12 @@
 
 namespace App\Http\Resources;
 
+// use App\Models\Country;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\BaseResource;
+use App\Http\Resources\CountryResource;
+
+use App\Http\Resources\PostalcodeResource;
 
 class CityResource extends BaseResource //JsonResource
 {
@@ -15,16 +19,20 @@ class CityResource extends BaseResource //JsonResource
      */
     public function toArray($request)
     {
-        /*
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'email' => $this->email,
-            'posts' => PostResource::collection($this->posts),
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-        ];*/
 
-        return parent::toArray($request);
+            'postalcode' => $this->postalcode->code, // PostalcodeResource::make($this->postalcode),
+            // 'postalcode_id' => $this->postalcode_id,
+            //'postalcodes' => PostalcodeResource::collection($this->postalcodes),
+
+            'state' => StateResource::make($this->state),
+            'country' => CountryResource::make($this->country),
+            'streets' => StreetResource::collection($this->whenLoaded('streets')),
+            'links'         => [
+                'self' => route('api.cities.show', ['city' => $this->id]),
+            ],
+        ];
     }
 }

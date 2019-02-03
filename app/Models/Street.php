@@ -18,6 +18,6 @@ class Street extends BaseModel
 
     public function city()
     {
-        return $this->belongsTo('Models\City', 'city_id');
+        return $this->belongsTo('App\Models\City', 'city_id');
     }
 }

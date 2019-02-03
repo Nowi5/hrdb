@@ -2,7 +2,7 @@
 
     @include('cookieConsent::dialogContents')
 
-    <script>
+    <script type="application/javascript">
 
         window.laravelCookieConsent = (function () {
 

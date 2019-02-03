@@ -17,7 +17,7 @@ class Country extends BaseModel
 
     public function language()
     {
-        return $this->belongsTo('Models\Language', 'language_id');
+        return $this->belongsTo('App\Models\Language', 'language_id');
     }
 
 }

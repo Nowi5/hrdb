@@ -6,11 +6,11 @@ namespace App\Models;
 use App\Models\BaseModel;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Region extends BaseModel
+class State extends BaseModel
 {
     use LogsActivity;
 
-    protected $table = 'region';
+    protected $table = 'states';
 
     protected $fillable = [
         'name', 'name_alternative', 'name_english', 'country_id'
@@ -18,7 +18,7 @@ class Region extends BaseModel
 
     public function country()
     {
-        return $this->belongsTo('Models\Country', 'country_id');
+        return $this->belongsTo('App\Models\Country', 'country_id');
     }
 
 }

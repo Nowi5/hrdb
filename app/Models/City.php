@@ -15,17 +15,29 @@ class City extends BaseModel
         'name', 'name_alternative', 'name_english'
     ];
 
-    public function region()
+    public function state()
     {
-        return $this->belongsTo('Models\Region', 'region_id');
+        return $this->belongsTo('App\Models\State', 'state_id');
     }
 
     public function country()
     {
-        return $this->belongsTo('Models\Country', 'country_id');
+        return $this->belongsTo('App\Models\Country', 'country_id');
     }
 
+    public function postalcode()
+    {
+        return $this->belongsTo('App\Models\Postalcode', 'postalcode_id');
+    }
+
+    /*
     public function postalcodes(){
-        return $this->hasMany('Models\Postalcodes', 'city_id');
+        return $this->hasMany('App\Models\Postalcode', 'city_id');
+    }
+    */
+
+    public function streets()
+    {
+        return $this->hasMany('App\Models\Street', 'city_id');
     }
 }

@@ -41,6 +41,13 @@ class CreateJobpostingsTable extends Migration
             $table->text('skills'); // free text, in best case separated with comma ,
 
             $table->date('posting_date')->nullable();
+            $table->date('delete_date')->nullable();
+
+            /**
+            8 Arbeitsbereiche?
+            Persönlichkeitsdimensionen nach Jung?
+             **/
+
 
             /** Company / Organization (will be added later) */
             //$table->unsignedInteger('company_id');
@@ -61,10 +68,11 @@ class CreateJobpostingsTable extends Migration
             $table->unsignedInteger('language_id')->nullable();
 
             /** Contact Details (can be harmonized later, but can be very different per posting, even within the same company*/
-            $table->string('contact_text')->nullable(); // free text, can be summary of name, mail and phone or any other text
+            $table->unsignedInteger('contact_id')->nullable();
+            /*$table->string('contact_text')->nullable(); // free text, can be summary of name, mail and phone or any other text
             $table->string('contact_name')->nullable();
             $table->string('contact_mail')->nullable();
-            $table->string('contact_phone')->nullable();
+            $table->string('contact_phone')->nullable();*/
 
             /** Registration link, where can he access e.g. the apply button */
             $table->string('apply_link')->nullable();

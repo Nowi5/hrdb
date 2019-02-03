@@ -17,21 +17,37 @@ use App\Http\Resources\CityResource;
 */
 
 Route::group(['middleware' => ['auth:api'], 'prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
+    Route::get('/', 'HomeController@index');
 
     Route::get('/user', function (Request $request) {
         return $request->user();
-    });
+    })->name('user');
 
     Route::resource('users', 'UserController')->only([
         'index', 'show'
     ]);
-
-    Route::get('/city', function () {
-        return new CityResource(City::find(1));
-    });
-
-    Route::get('/cities', function () {
-        return CityResource::collection(City::all());
-    });
-
+    Route::resource('cities', 'CityController')->only([
+        'index', 'show'
+    ]);
+    Route::resource('languages', 'LanguageController')->only([
+        'index', 'show'
+    ]);
+    Route::resource('currencies', 'CurrencyController')->only([
+        'index', 'show'
+    ]);
+    Route::resource('countries', 'CountryController')->only([
+        'index', 'show'
+    ]);
+    Route::resource('states', 'StateController')->only([
+        'index', 'show'
+    ]);
+    Route::resource('postalcodes', 'PostalcodeController')->only([
+        'index', 'show'
+    ]);
+    Route::resource('streets', 'StreetController')->only([
+        'index', 'show'
+    ]);
+    Route::resource('locations', 'LocationController')->only([
+        'index', 'show'
+    ]);
 });
