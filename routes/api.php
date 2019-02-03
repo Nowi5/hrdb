@@ -27,27 +27,27 @@ Route::group(['middleware' => ['auth:api'], 'prefix' => '/v1', 'namespace' => 'A
         'index', 'show'
     ]);
     Route::resource('cities', 'CityController')->only([
-        'index', 'show'
+        'index', 'show', 'store', 'update'
     ]);
     Route::resource('languages', 'LanguageController')->only([
-        'index', 'show'
+        'index', 'show', 'store', 'update'
     ]);
     Route::resource('currencies', 'CurrencyController')->only([
-        'index', 'show'
+        'index', 'show', 'store', 'update'
     ]);
     Route::resource('countries', 'CountryController')->only([
-        'index', 'show'
+        'index', 'show', 'store', 'update'
     ]);
     Route::resource('states', 'StateController')->only([
-        'index', 'show'
+        'index', 'show', 'store', 'update'
     ]);
     Route::resource('postalcodes', 'PostalcodeController')->only([
-        'index', 'show'
+        'index', 'show', 'store', 'update'
     ]);
     Route::resource('streets', 'StreetController')->only([
-        'index', 'show'
+        'index', 'show', 'store', 'update'
     ]);
     Route::resource('locations', 'LocationController')->only([
-        'index', 'show'
+        'index', 'show', 'store'
     ]);
 });

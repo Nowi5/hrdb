@@ -26,4 +26,28 @@ class StreetController extends Controller
         return new StreetResource($street);
     }
 
+    public function store(Request $request)
+    {
+        //@todo: check for city id or city name
+
+        //@todo: check if combination of streetname and city existis, if yes just update
+        $street = Street::create($request->all());
+        return response()->json($street, 201);
+    }
+
+
+    public function update(Request $request, Street $street)    
+    {
+        $street->update($request->all());
+        return response()->json($street, 200);
+    }
+
+    // There should be no need to delete streets, instead create new
+    /*
+    public function delete(Street $street)
+    {
+        $street->delete();
+        return response()->json(null, 204);
+    }
+    */
 }

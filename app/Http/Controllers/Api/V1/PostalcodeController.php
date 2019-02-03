@@ -26,4 +26,25 @@ class PostalcodeController extends Controller
         return new postalcodeResource($postalcode);
     }
 
+    public function store(Request $request)
+    {
+        $postalcode = Postalcode::create($request->all());
+        return response()->json($postalcode, 201);
+    }
+
+    public function update(Request $request, Postalcode $postalcode)    
+    {
+        $postalcode->update($request->all());
+        return response()->json($postalcode, 200);
+    }
+
+    // There should be no need to update or delete postalcodes, instead create new
+    /*
+    public function delete(Postalcode $postalcode)    
+    {
+        $postalcode->delete();
+        return response()->json(null, 204);
+    }
+    */
+
 }

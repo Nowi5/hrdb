@@ -26,4 +26,26 @@ class CountryController extends Controller
         return new CountryResource($Country);
     }
 
+    public function store(Request $request)
+    {
+        $country = Country::create($request->all());
+        return response()->json($country, 201);
+    }
+
+
+    public function update(Request $request, Country $country)    
+    {
+        $country->update($request->all());
+        return response()->json($country, 200);
+    }
+
+    // There should be no need to update or delete countries, instead create new
+    /*
+    public function delete(Country $country)    
+    {
+        $country->delete();
+        return response()->json(null, 204);
+    }
+    */
+
 }

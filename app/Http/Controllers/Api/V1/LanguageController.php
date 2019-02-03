@@ -26,4 +26,25 @@ class LanguageController extends Controller
         return new LanguageResource($Language);
     }
 
+    public function store(Request $request)
+    {
+        $language = Language::create($request->all());
+        return response()->json($language, 201);
+    }
+
+
+    public function update(Request $request, Language $language)    
+    {
+        $language->update($request->all());
+        return response()->json($language, 200);
+    }
+
+    // There should be no need to delete languages, instead create new
+    /*
+    public function delete(Language $language)    
+    {
+        $language->delete();
+        return response()->json(null, 204);
+    }
+    */
 }

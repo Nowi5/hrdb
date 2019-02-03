@@ -26,4 +26,25 @@ class CityController extends Controller
         return new CityResource($city);
     }
 
+    public function store(Request $request)
+    {
+        $city = City::create($request->all());
+        return response()->json($city, 201);
+    }
+
+
+    public function update(Request $request, City $city)
+    {
+        $city->update($request->all());
+        return response()->json($city, 200);
+    }
+
+    // There should be no need to delete cities, instead create new
+    /*
+    public function delete(City $city)    
+    {
+        $city->delete();
+        return response()->json(null, 204);
+    }
+    */
 }
