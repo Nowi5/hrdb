@@ -34,7 +34,17 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::group(['prefix' => '/docu', 'as' => 'docu.'], function () {
         Route::get('/access', function () {  return view('docu.access');  })->name('access');
         Route::get('/fetchingdata', function () {  return view('docu.fetchingdata');  })->name('fetchingdata');
+        //Core:
         Route::get('/jobpostings', function () {  return view('docu.jobpostings');  })->name('jobpostings');
+
+        //Utilities:
+        Route::get('/cities', function () {  return view('docu.cities');  })->name('cities');
+        Route::get('/states', function () {  return view('docu.states');  })->name('states');
+        Route::get('/streets', function () {  return view('docu.streets');  })->name('streets');
+        Route::get('/countries', function () {  return view('docu.countries');  })->name('countries');
+        Route::get('/locations', function () {  return view('docu.location');  })->name('locations');
+        Route::get('/languages', function () {  return view('docu.languages');  })->name('languages');
+
 
     });
 

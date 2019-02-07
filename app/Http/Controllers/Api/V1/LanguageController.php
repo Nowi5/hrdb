@@ -7,6 +7,8 @@ use Spatie\QueryBuilder\QueryBuilder;
 use App\Http\Resources\LanguageCollection;
 use App\Http\Resources\LanguageResource;
 use App\Models\Language;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class LanguageController extends Controller
 {
@@ -28,8 +30,41 @@ class LanguageController extends Controller
 
     public function store(Request $request)
     {
-        $language = Language::create($request->all());
-        return response()->json($language, 201);
+        // 'iso2', 'name', 'name_long', 'name_lcoal', 'name_english'
+        $data = $request->all();
+
+        $validator = Validator::make($request->all(),[
+            'iso2' => ['required', 'string', 'max:8'],
+            'name' => ['required', 'string', 'max:255']
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors'  => $validator->errors(),
+                'message' => 'Creating Language failed'
+            ], 401);
+        }
+
+        $language = Language::firstOrCreate(
+            [
+                'iso2'      => $data['iso2'],
+                'name'   => $data['name']
+            ],
+            [
+                'name_long' => (isset($data['name_long']) ? $data['name_long'] : ''),
+                'name_lcoal' => (isset($data['name_lcoal']) ? $data['name_lcoal'] : ''),
+                'name_english' => (isset($data['name_english']) ? $data['name_english'] : ''),
+            ]
+        );
+
+        if ($language->wasRecentlyCreated === true) {
+            $msg = 'Language successfully created!';
+        } else {
+            $msg = 'Language already existed';
+        }
+
+        return LanguageResource::make($language)
+            ->additional(['message' => $msg]);
     }
 
 

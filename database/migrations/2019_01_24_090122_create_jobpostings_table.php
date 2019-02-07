@@ -65,7 +65,7 @@ class CreateJobpostingsTable extends Migration
             $table->unsignedInteger('functionalarea_id')->nullable();
 
             $table->string('location_id')->nullable(); // complete address
-            $table->unsignedInteger('language_id')->nullable();
+            $table->unsignedInteger('language_id');
 
             /** Contact Details (can be harmonized later, but can be very different per posting, even within the same company*/
             $table->unsignedInteger('contact_id')->nullable();

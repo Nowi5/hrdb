@@ -19,7 +19,7 @@ class Install extends Command
      *
      * @var string
      */
-    protected $description = 'Basic Installation';
+    protected $description = 'Run basic installation including migration, seed and key generation';
 
     /**
      * Create a new command instance.
@@ -53,13 +53,11 @@ class Install extends Command
         $bar->advance();
         Artisan::call('passport:keys');
         $bar->advance();
-        //Artisan::call('passport:client', ['--personal' => 'default']);
-
+        Artisan::call('passport:client', [ '--personal' => 'Default' , '--no-interaction' => '']);
+        //  php artisan passport:client --personal --no-interaction
         $bar->finish();
 
         $this->info("\n Install complete");
-
-        $this->info("\n Please run passport:client --personal manually");
 
     }
 }

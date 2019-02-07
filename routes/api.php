@@ -16,38 +16,54 @@ use App\Http\Resources\CityResource;
 |
 */
 
-Route::group(['middleware' => ['auth:api'], 'prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
-    Route::get('/', 'HomeController@index');
+Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
+    Route::post('login', 'AuthController@login');
+    Route::post('signup', 'AuthController@signup');
+    Route::post('register', 'AuthController@signup');
 
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    })->name('user');
+    Route::group(['middleware' => ['auth:api']], function () {
 
-    Route::resource('users', 'UserController')->only([
-        'index', 'show'
-    ]);
-    Route::resource('cities', 'CityController')->only([
-        'index', 'show', 'store', 'update'
-    ]);
-    Route::resource('languages', 'LanguageController')->only([
-        'index', 'show', 'store', 'update'
-    ]);
-    Route::resource('currencies', 'CurrencyController')->only([
-        'index', 'show', 'store', 'update'
-    ]);
-    Route::resource('countries', 'CountryController')->only([
-        'index', 'show', 'store', 'update'
-    ]);
-    Route::resource('states', 'StateController')->only([
-        'index', 'show', 'store', 'update'
-    ]);
-    Route::resource('postalcodes', 'PostalcodeController')->only([
-        'index', 'show', 'store', 'update'
-    ]);
-    Route::resource('streets', 'StreetController')->only([
-        'index', 'show', 'store', 'update'
-    ]);
-    Route::resource('locations', 'LocationController')->only([
-        'index', 'show', 'store'
-    ]);
-});
+        Route::post('logout', 'AuthController@logout');
+        Route::get('logout', 'AuthController@logout');
+        Route::get('user', 'AuthController@user');
+
+        Route::get('/', 'HomeController@index');
+
+        Route::get('/user', function (Request $request) {
+            return $request->user();
+        })->name('user');
+
+        Route::group(['middleware' => ['verified']], function () {
+            Route::resource('users', 'UserController')->only([
+                'index', 'show'
+            ]);
+            Route::resource('cities', 'CityController')->only([
+                'index', 'show', 'store', 'update'
+            ]);
+            Route::resource('languages', 'LanguageController')->only([
+                'index', 'show', 'store', 'update'
+            ]);
+            Route::resource('currencies', 'CurrencyController')->only([
+                'index', 'show', 'store', 'update'
+            ]);
+            Route::resource('countries', 'CountryController')->only([
+                'index', 'show', 'store', 'update'
+            ]);
+            Route::resource('states', 'StateController')->only([
+                'index', 'show', 'store', 'update'
+            ]);
+            Route::resource('streets', 'StreetController')->only([
+                'index', 'show', 'store', 'update'
+            ]);
+            /* Nested Ressources
+            Route::resource('photos.comments', 'PhotoCommentController')->only([
+                'index', 'show', 'store', 'update'
+            ]);
+            */
+
+            Route::resource('locations', 'LocationController')->only([
+                'index', 'show', 'store'
+            ]);
+        }); //end verified
+    }); //end auth api
+}); //end namespace api

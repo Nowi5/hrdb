@@ -22,11 +22,7 @@ class CityResource extends BaseResource //JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-
-            'postalcode' => $this->postalcode->code, // PostalcodeResource::make($this->postalcode),
-            // 'postalcode_id' => $this->postalcode_id,
-            //'postalcodes' => PostalcodeResource::collection($this->postalcodes),
-
+            'postalcode' => $this->postalcode,
             'state' => StateResource::make($this->state),
             'country' => CountryResource::make($this->country),
             'streets' => StreetResource::collection($this->whenLoaded('streets')),

@@ -13614,6 +13614,11 @@ main {
   margin-bottom: 30px;
 }
 
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 
@@ -13625,17 +13630,18 @@ main {
   min-height: 100%;
 }
 
-main {
-  padding-bottom: 75px;
+main,
+#app {
+  padding-bottom: 50px;
 }
 
 footer.footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 60px;
+  height: 35px;
   /* Set the fixed height of the footer here */
-  line-height: 60px;
+  line-height: 35px;
   /* Vertically center the text there */
   color: #ffffff;
 }

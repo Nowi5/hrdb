@@ -12,7 +12,7 @@ class City extends BaseModel
     protected $table = 'cities';
 
     protected $fillable = [
-        'name', 'name_alternative', 'name_english'
+        'name', 'name_alternative', 'name_english', 'postalcode'
     ];
 
     public function state()
@@ -25,11 +25,7 @@ class City extends BaseModel
         return $this->belongsTo('App\Models\Country', 'country_id');
     }
 
-    public function postalcode()
-    {
-        return $this->belongsTo('App\Models\Postalcode', 'postalcode_id');
-    }
-
+    // @todo: Make name unique and change postalcode to n:m
     /*
     public function postalcodes(){
         return $this->hasMany('App\Models\Postalcode', 'city_id');
@@ -38,6 +34,6 @@ class City extends BaseModel
 
     public function streets()
     {
-        return $this->hasMany('App\Models\Street', 'city_id');
+        return $this->hasMany('App\Models\Stret', 'city_id');
     }
 }

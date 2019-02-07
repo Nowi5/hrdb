@@ -14,10 +14,32 @@
                             <a class="nav-link active" href="{{ route('docu.fetchingdata') }}">Fetching Data</a>
                         </li>
                         <li><div class="dropdown-divider"></div></li>
-                        <li>Resources:</li>
+                        <li>Core Resources:</li>
                         <li class="nav-item {{ Route::currentRouteNamed('docu.jobpostings') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('docu.jobpostings') }}">Job Postings</a>
                         </li>
+                        <li><div class="dropdown-divider"></div></li>
+                        <li>Utilities:</li>
+                        <li class="nav-item {{ Route::currentRouteNamed('docu.cities') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('docu.cities') }}">Cities</a>
+                        </li>
+                        <li class="nav-item {{ Route::currentRouteNamed('docu.countries') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('docu.countries') }}">Countries</a>
+                        </li>
+                        <li class="nav-item {{ Route::currentRouteNamed('docu.languages') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('docu.languages') }}">Languages</a>
+                        </li>
+                        <li class="nav-item {{ Route::currentRouteNamed('docu.locations') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('docu.locations') }}">Locations</a>
+                        </li>
+                        <li class="nav-item {{ Route::currentRouteNamed('docu.states') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('docu.states') }}">States</a>
+                        </li>
+                        <li class="nav-item {{ Route::currentRouteNamed('docu.streets') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('docu.streets') }}">Streets</a>
+                        </li>
+
+
                     </ul>
                 </div>
             </div>

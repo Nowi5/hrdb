@@ -12,6 +12,8 @@ class CreateLocationsTable extends Migration
      * @return void
      */
 
+    // Locations are not used to run any data validation, data are stored as provided
+
     // Of course I'm aware that a few relationships like city -> state -> country & city -> country are redundant
     // However, this will improve performance when filtering.
 
@@ -23,9 +25,9 @@ class CreateLocationsTable extends Migration
             $table->increments('id');
             $table->string('iso2');
             $table->string('name')->nullable();
-            $table->string('name_long')->nullable();
-            $table->string('name_local')->nullable();
-            $table->string('name_english')->nullable();
+            $table->string('name_long')->nullable(); //@todo: Change to n:m languages soon
+            $table->string('name_local')->nullable(); //@todo: Change to n:m languages soon
+            $table->string('name_english')->nullable(); //@todo: Change to n:m languages soon
             $table->timestamps();
         });
 
@@ -43,9 +45,9 @@ class CreateLocationsTable extends Migration
             $table->string('name');
             $table->string('name_long')->nullable();
             $table->string('name_local')->nullable();
-            $table->string('name_english');
-            $table->unsignedInteger('language_id');
-            $table->unsignedInteger('currency_id');
+            $table->string('name_english')->nullable(); //@todo: Change to n:m languages soon
+            $table->unsignedInteger('language_id')->nullable();
+            $table->unsignedInteger('currency_id')->nullable();
             $table->timestamps();
         });
 
@@ -57,33 +59,26 @@ class CreateLocationsTable extends Migration
             $table->timestamps();
         });
 
-        // Wouldn't be state a better name?
-        Schema::create('state', function (Blueprint $table) {
+        Schema::create('states', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code');
-            $table->string('name');
-            $table->string('name_alternative')->nullable();
-            $table->string('name_english')->nullable();
+            $table->string('name');  //@todo: Change to n:m languages soon
+            $table->string('name_alternative')->nullable(); //@todo: Change to n:m languages & names soon
+            $table->string('name_english')->nullable();  //@todo: Change to n:m languages soon
             $table->unsignedInteger('country_id')->nullable();
             $table->timestamps();
         });
+
+        // Do we need other levels of clustering villages, cities and districts?
 
         Schema::create('cities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('name_alternative')->nullable();
             $table->string('name_english')->nullable();
+            $table->string('postalcode'); //@todo: Change to n:m relationship
             $table->unsignedInteger('state_id')->nullable();
             $table->unsignedInteger('country_id');
-            $table->unsignedInteger('postalcode_id');
-            $table->timestamps();
-
-        });
-
-        // Postalcodes can have multiple names //todo For later Cities can have more as one postalcode
-        Schema::create('postalcodes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('code');
             $table->timestamps();
         });
 
@@ -94,12 +89,9 @@ class CreateLocationsTable extends Migration
             $table->string('line3')->nullable();
             $table->unsignedInteger('street_id')->nullable();
             $table->unsignedInteger('number')->nullable();
-            $table->unsignedInteger('city_id'); // Do we need city here if we have postalcode?
-            $table->unsignedInteger('postalcode_id');
+            $table->unsignedInteger('city_id');
             $table->timestamps();
         });
-
-
     }
 
     /**

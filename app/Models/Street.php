@@ -13,7 +13,7 @@ class Street extends BaseModel
     protected $table = 'streets';
 
     protected $fillable = [
-        'name', 'name_alternative'
+        'name', 'name_alternative', 'city_id'
     ];
 
     public function city()

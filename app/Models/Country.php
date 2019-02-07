@@ -12,7 +12,7 @@ class Country extends BaseModel
     protected $table = 'countries';
 
     protected $fillable = [
-       'name', 'name_long', 'name_local', 'name_english'
+       'iso2', 'name', 'name_long', 'name_local', 'name_english', 'language_id', 'currency_id'
     ];
 
     public function language()

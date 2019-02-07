@@ -7,14 +7,22 @@ use Spatie\QueryBuilder\QueryBuilder;
 use App\Http\Resources\StateCollection;
 use App\Http\Resources\StateResource;
 use App\Models\State;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
+use App\Repositories\CityRepositoryInterface;
 
 class StateController extends Controller
 {
+    public function __construct(CountryRepositoryInterface $country)
+    {
+        $this->country = $country;
+    }
 
     public function index()
     {
         $states = QueryBuilder::for(State::class)
-            ->allowedFilters('name')
+            ->allowedFilters('name', 'country.name', 'country.id')
             ->paginate();
 
         return StateResource::collection($states);
@@ -28,10 +36,45 @@ class StateController extends Controller
 
     public function store(Request $request)
     {
-        $state = State::create($request->all());
-        return response()->json($state, 201);
-    }
+        $data = $request->all();
+        $country = $this->country->getOrCreate($data, true);
+        $data['country_id'] = $country->id;
 
+        $validator = Validator::make($request->all(),[
+            'name' => ['required', 'string', 'max:255'],
+            'name_alternative' => ['string', 'max:255'],
+            'country_id' => ['required', 'integer', 'max:255']
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors'  => $validator->errors(),
+                'message' => 'Creating state failed'
+            ], 401);
+        }
+
+        //$state = State::create($data);
+        //$state->save();
+
+        $state = State::firstOrCreate(
+            [
+                'name'      => $data['name'],
+                'country_id'   => $data['country_id']
+            ],
+            [
+                'name_alternative' => (isset($data['name_alternative']) ? $data['name_alternative'] : '')
+            ]
+        );
+
+        if ($state->wasRecentlyCreated === true) {
+            $msg = 'State successfully created!';
+        } else {
+            $msg = 'State already existed.';
+        }
+
+        return StateResource::make($state)
+            ->additional(['message' => $msg]);
+    }
 
     public function update(Request $request, State $state)    
     {

@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Config;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +47,26 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // This will replace our 404 response with a JSON response.
+        // https://www.toptal.com/laravel/restful-laravel-api-tutorial
+        if (($request->expectsJson()  || $request->is('api/*')) && $exception instanceof ModelNotFoundException) {
+            return response()->json([
+                'error' => 'Resource not found'
+            ], 404);
+        }
+        if (($request->expectsJson()  || $request->is('api/*'))) {
+            $error = $this->convertExceptionToResponse($exception);
+            $response = [];
+            // if($error->getStatusCode() == 500) {
+                $response['error'] = $exception->getMessage();
+                if(Config::get('app.debug')) {
+                    $response['trace'] = $exception->getTraceAsString();
+                    $response['code'] = $exception->getCode();
+                }
+            // }
+            return response()->json($response, $error->getStatusCode());
+        }
+
         return parent::render($request, $exception);
     }
 
@@ -55,5 +76,12 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
         return redirect()->guest(route('login'));
+    }
+
+    public function unauthorized($request, AuthorizationException $exception){
+        if($request->expectsJson() || $request->is('api/*')){
+            return response()->json("You don't have permission to do this",401);
+        }
+        return redirect()->guest('login');
     }
 }
