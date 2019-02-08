@@ -1,7 +1,8 @@
 <?php
 namespace App\Repositories;
+use App\Models\State;
 
-class StateRepository extends Repository implements CityRepositoryInterface
+class StateRepository extends Repository implements StateRepositoryInterface
 {
 
     /**
@@ -11,6 +12,8 @@ class StateRepository extends Repository implements CityRepositoryInterface
      * The actuall data are in the second layer $data['city']
      */
     public function getOrCreate(Array $data, $required = true){
+
+
         if(isset($data['state_id'])){
             $this->model = State::where('id', $data['state_id'])->first();
             return $this->model;

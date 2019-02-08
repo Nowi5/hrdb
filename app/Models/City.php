@@ -12,7 +12,7 @@ class City extends BaseModel
     protected $table = 'cities';
 
     protected $fillable = [
-        'name', 'name_alternative', 'name_english', 'postalcode'
+        'name', 'name_alternative', 'name_english', 'postalcode', 'country_id', 'state_id'
     ];
 
     public function state()

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 use App\Repositories\CityRepositoryInterface;
+use App\Repositories\CountryRepositoryInterface;
 
 class StateController extends Controller
 {

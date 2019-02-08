@@ -22,6 +22,30 @@ SET time_zone = "+00:00";
 -- Datenbank: `homestead`
 --
 
+
+--
+-- Daten für Tabelle `states`
+--
+
+INSERT INTO `states` (`id`, `name`, `name_alternative`, `name_english`, `country_id`, `created_at`, `updated_at`) VALUES
+(1, 'Brandenburg', 'BB', NULL, 38, NULL, NULL),
+(2, 'Berlin', 'BE', NULL, 38, NULL, NULL),
+(3, 'Baden-Württemberg', 'BW', NULL, 38, NULL, NULL),
+(4, 'Bayern', 'BY', NULL, 38, NULL, NULL),
+(5, 'Hansestadt Bremen', 'HB', NULL, 38, NULL, NULL),
+(6, 'Hessen', 'HE', NULL, 38, NULL, NULL),
+(7, 'Hamburg', 'HH', NULL, 38, NULL, NULL),
+(8, 'Mecklenburg-Vorpommern', 'MV', NULL, 38, NULL, NULL),
+(9, 'Niedersachsen', 'NI', NULL, 38, NULL, NULL),
+(10, 'Nordrhein-Westfalen', 'NRW', NULL, 38, NULL, NULL),
+(11, 'Rheinland-Pfalz', 'RP', NULL, 38, NULL, NULL),
+(12, 'Schleswig-Holstein', 'SH', NULL, 38, NULL, NULL),
+(13, 'Saarland', 'SL', NULL, 38, NULL, NULL),
+(14, 'Sachsen', 'SN', NULL, 38, NULL, NULL),
+(15, 'Sachsen-Anhalt', 'ST', NULL, 38, NULL, NULL),
+(16, 'Thüringen', 'TH', NULL, 38, NULL, NULL);
+COMMIT;
+
 --
 -- Daten für Tabelle `cities`
 --
@@ -16507,28 +16531,6 @@ INSERT INTO `cities` (`id`, `name`, `name_alternative`, `name_english`, `postalc
 (16478, 'Körner' , NULL, NULL, '99998', 16, 38, NULL, NULL);
 COMMIT;
 
---
--- Daten für Tabelle `regions`
---
-
-INSERT INTO `regions` (`id`, `name`, `name_alternative`, `name_english`, `created_at`, `updated_at`) VALUES
-(1, 'Brandenburg', 'BB', NULL, NULL, NULL),
-(2, 'Berlin', 'BE', NULL, NULL, NULL),
-(3, 'Baden-Württemberg', 'BW', NULL, NULL, NULL),
-(4, 'Bayern', 'BY', NULL, NULL, NULL),
-(5, 'Hansestadt Bremen', 'HB', NULL, NULL, NULL),
-(6, 'Hessen', 'HE', NULL, NULL, NULL),
-(7, 'Hamburg', 'HH', NULL, NULL, NULL),
-(8, 'Mecklenburg-Vorpommern', 'MV', NULL, NULL, NULL),
-(9, 'Niedersachsen', 'NI', NULL, NULL, NULL),
-(10, 'Nordrhein-Westfalen', 'NRW', NULL, NULL, NULL),
-(11, 'Rheinland-Pfalz', 'RP', NULL, NULL, NULL),
-(12, 'Schleswig-Holstein', 'SH', NULL, NULL, NULL),
-(13, 'Saarland', 'SL', NULL, NULL, NULL),
-(14, 'Sachsen', 'SN', NULL, NULL, NULL),
-(15, 'Sachsen-Anhalt', 'ST', NULL, NULL, NULL),
-(16, 'Thüringen', 'TH', NULL, NULL, NULL);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

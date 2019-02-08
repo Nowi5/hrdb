@@ -23,6 +23,11 @@ class RepositoryServiceProvider extends ServiceProvider {
     public function register()
     {
         // $this->app->bind('App\Repositories\CityRepositoryInterface', 'App\Repositories\CityRepository');
+        // $this->app->bind('App\Repositories\CityRepositoryInterface', 'App\Repositories\CountryRepository');
+        // $this->app->bind('App\Repositories\CityRepositoryInterface', 'App\Repositories\StateRepository');
+        // $this->app->bind('App\Repositories\CityRepositoryInterface', 'App\Repositories\LanguageRepository');
+        // $this->app->bind('App\Repositories\CityRepositoryInterface', 'App\Repositories\CurrencyRepository');
+
         $this->app->bind('App\Repositories\CityRepositoryInterface',function(){ return new CityRepository(new City); });
         $this->app->bind('App\Repositories\CountryRepositoryInterface',function(){ return new CountryRepository(new Country); });
         $this->app->bind('App\Repositories\StateRepositoryInterface',function(){ return new StateRepository(new State); });

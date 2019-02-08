@@ -61,7 +61,7 @@ class CreateLocationsTable extends Migration
 
         Schema::create('states', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code');
+            // $table->string('code');
             $table->string('name');  //@todo: Change to n:m languages soon
             $table->string('name_alternative')->nullable(); //@todo: Change to n:m languages & names soon
             $table->string('name_english')->nullable();  //@todo: Change to n:m languages soon

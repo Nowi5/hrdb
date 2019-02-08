@@ -1,7 +1,8 @@
 <?php
 namespace App\Repositories;
+use App\Models\Country;
 
-class CountryRepository extends Repository implements CityRepositoryInterface
+class CountryRepository extends Repository implements CountryRepositoryInterface
 {
 
     /**

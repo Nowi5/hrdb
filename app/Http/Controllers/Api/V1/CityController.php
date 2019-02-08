@@ -67,7 +67,7 @@ class CityController extends Controller
                 'name'          => $data['name'],
                 'country_id'    => $data['country_id'],
                 'state_id'      => $data['state_id'],
-                'postalcode'    => $data['postalcode']
+                'postalcode'    => $data['postalcode'],
             ],
             [
                 'name_alternative' => (isset($data['name_alternative']) ? $data['name_alternative'] : ''),

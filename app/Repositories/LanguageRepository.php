@@ -1,7 +1,8 @@
 <?php
 namespace App\Repositories;
+use App\Models\Language;
 
-class LanguageRepository extends Repository implements CityRepositoryInterface
+class LanguageRepository extends Repository implements LanguageRepositoryInterface
 {
 
     /**

@@ -21,7 +21,7 @@ class CurrencyResource extends JsonResource
             'symbol' => $this->symbol,
             'symbol_long' => $this->symbol_long,
             'links'         => [
-                'self' => route('api.currency.show', ['currency' => $this->id]),
+                'self' => route('api.currencies.show', ['currency' => $this->id]),
             ],
         ];
     }
