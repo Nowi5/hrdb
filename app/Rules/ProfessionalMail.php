@@ -86,6 +86,6 @@ class ProfessionalMail implements Rule
     public function message()
     {
         // @todo: Translate
-        return 'The :attribute must be a professional email.'; //trans('validation.professionalemail');
+        return trans('validation.professionalemail'); //;
     }
 }

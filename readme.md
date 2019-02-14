@@ -1,4 +1,4 @@
-![HRDB Icon](public/img/HRDB-Icon.png "HRDB")
+![HRDB Icon](public/img/HRDB-icon.png "HRDB")
 
 ## About HRDB
 

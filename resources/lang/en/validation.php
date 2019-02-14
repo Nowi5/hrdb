@@ -126,8 +126,9 @@ return [
     | specify a specific custom language line for a given attribute rule.
     |
     */
-
+    'professionalemail' => 'The :attribute must be a professional email.',
     'custom' => [
+
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
