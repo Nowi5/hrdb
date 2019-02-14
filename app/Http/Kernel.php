@@ -19,6 +19,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
+
     ];
 
     /**
@@ -37,11 +38,13 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
             //You should ensure that the EncryptCookies middleware is listed prior to the CreateFreshApiToken middleware in your middleware stack.
+            \PragmaRX\Tracker\Vendor\Laravel\Middlewares\Tracker::class,
         ],
 
         'api' => [
             'throttle:60,1',
             'bindings',
+            \PragmaRX\Tracker\Vendor\Laravel\Middlewares\Tracker::class,
         ],
     ];
 
