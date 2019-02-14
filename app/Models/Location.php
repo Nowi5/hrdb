@@ -10,6 +10,8 @@ class Location extends BaseModel
     // Location = Address
     protected $table = 'locations';
 
+    protected $with = ['street', 'city'];
+
     protected $fillable = [
         'line1', 'line2', 'line3', 'number', 'street_id', 'city_id',
     ];

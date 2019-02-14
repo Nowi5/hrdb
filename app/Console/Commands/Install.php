@@ -58,6 +58,7 @@ class Install extends Command
         $bar->finish();
 
         $this->info("\n Install complete");
+        $this->info("Please run following command manually: php artisan passport:client --personal --no-interaction ");
 
     }
 }

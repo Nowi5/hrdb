@@ -55,7 +55,11 @@ Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], funct
             Route::resource('streets', 'StreetController')->only([
                 'index', 'show', 'store', 'update'
             ]);
-            /* Nested Ressources
+            Route::resource('simplejobpostings', 'SimpleJobpostingController')->only([
+                'index', 'show', 'store', 'update', 'delete'
+            ]);
+
+            /* Nested Ressources Example
             Route::resource('photos.comments', 'PhotoCommentController')->only([
                 'index', 'show', 'store', 'update'
             ]);

@@ -13687,3 +13687,16 @@ footer.footer a {
   color: grey;
 }
 
+/* Dashboard */
+
+.card-body-icon {
+  position: absolute;
+  z-index: 0;
+  top: -0.25rem;
+  right: -0.1rem;
+  opacity: 0.4;
+  font-size: 5rem;
+  -webkit-transform: rotate(15deg);
+  transform: rotate(15deg);
+}
+

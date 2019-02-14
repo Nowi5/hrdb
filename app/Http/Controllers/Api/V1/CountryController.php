@@ -33,10 +33,10 @@ class CountryController extends Controller
         return CountryResource::collection($countries);
     }
 
-    public function show(Country $Country)
+    public function show(Country $country)
     {
         CountryResource::withoutWrapping();
-        return new CountryResource($Country);
+        return new CountryResource($country);
     }
 
     // 'name', 'name_long', 'name_local', 'name_english', 'language_id', 'currency_id'

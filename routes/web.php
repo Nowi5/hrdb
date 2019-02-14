@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::group(['prefix' => '/docu', 'as' => 'docu.'], function () {
         Route::get('/access', function () {  return view('docu.access');  })->name('access');
         Route::get('/fetchingdata', function () {  return view('docu.fetchingdata');  })->name('fetchingdata');
+
         //Core:
         Route::get('/jobpostings', function () {  return view('docu.jobpostings');  })->name('jobpostings');
 
