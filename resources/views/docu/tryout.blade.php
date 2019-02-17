@@ -18,7 +18,7 @@
         </div>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="headers-tab" data-toggle="tab" href="#headers" role="tab" aria-controls="headers" aria-selected="true">Headers</a>
+                <a class="nav-link active" id="headers-tab" data-toggle="tab" href="#headers" role="tab" aria-controls="headers" aria-selected="true">Request Headers</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="requestbody-tab" data-toggle="tab" href="#requestbody" role="tab" aria-controls="requestbody" aria-selected="false">Request Body</a>
@@ -74,7 +74,7 @@
 </div>
 
 
-@section('scripts')
+@push('scripts')
     <script>
 
         function tryout(url, method, data){
@@ -137,7 +137,7 @@
 
                     $('#tryoutform-responsetext').html(jsonPretty);
                     $('#tryoutform-responsestatus').addClass("text-danger");
-                    $('#tryoutform-responsestatus').html("<i class=\"fa fa-times\"></i> " + xhr.status + " " + textStatus);
+                    $('#tryoutform-responsestatus').html("<i class=\"fa fa-times\"></i> " + xhr.status);
 
                 },
                 success: function(data, textStatus, xhr) {
@@ -178,4 +178,4 @@
 
 
     </script>
-@endsection
+@endpush

@@ -17,7 +17,21 @@
                     <li>Check the response for 200 OK. You should see a basic dataset of your profile including email address</li>
                 </ol>
             </p>
-            <img class="img-fluid img-thumbnail" src="/img/docu/access_example.png" />
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header">Example</div>
+        <div class="card-body">
+           @include('docu.tryout')
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(function() {
+            tryout("/api/v1/user", "GET", "")
+        });
+    </script>
+@endpush

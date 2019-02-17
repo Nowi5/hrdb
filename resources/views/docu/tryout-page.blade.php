@@ -13,3 +13,11 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(function() {
+            tryout("/api/v1", "GET", "")
+        });
+    </script>
+@endpush

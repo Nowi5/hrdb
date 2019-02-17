@@ -122,7 +122,7 @@
 </div>
 @endsection
 
-@section('scripts')
+@push('scripts')
     <!-- @todo: Replace include within app.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
 
@@ -191,4 +191,4 @@
             }
         });
     </script>
-@endsection
+@endpush
