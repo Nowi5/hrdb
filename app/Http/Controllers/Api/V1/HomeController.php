@@ -17,7 +17,7 @@ class HomeController extends Controller
                     'user'  => route('api.user'),
                     'users' => route('api.users.index'),
                     'cities' => route('api.cities.index'),
-                    'postalcodes' => route('api.postalcodes.index'),
+                   // 'postalcodes' => route('api.postalcodes.index'),
                     'states' => route('api.states.index'),
                     'countries' => route('api.countries.index'),
                     'languages' => route('api.languages.index'),

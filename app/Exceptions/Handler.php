@@ -57,13 +57,13 @@ class Handler extends ExceptionHandler
         if (($request->expectsJson()  || $request->is('api/*'))) {
             $error = $this->convertExceptionToResponse($exception);
             $response = [];
-            // if($error->getStatusCode() == 500) {
+            if($error->getStatusCode() == 500) {
                 $response['error'] = $exception->getMessage();
                 if(Config::get('app.debug')) {
                     $response['trace'] = $exception->getTraceAsString();
                     $response['code'] = $exception->getCode();
                 }
-            // }
+            }
             return response()->json($response, $error->getStatusCode());
         }
 
@@ -73,7 +73,7 @@ class Handler extends ExceptionHandler
     protected function unauthenticated($request, \Illuminate\Auth\AuthenticationException $exception)
     {
         if ($request->expectsJson()  || $request->is('api/*')) {
-            return response()->json(['error' => 'Unauthenticated.'], 401);
+            return response()->json(['error' => 'Unauthenticated'], 401);
         }
         return redirect()->guest(route('login'));
     }

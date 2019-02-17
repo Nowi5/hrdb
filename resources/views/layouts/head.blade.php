@@ -1,12 +1,17 @@
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ env('ANALYTICS_ID') }}"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+@if(env('ANALYTICS_ID'))
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ env('ANALYTICS_ID') }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-    gtag('config', '{{ env('ANALYTICS_ID') }}');
-</script>
+        gtag('config', '{{ env('ANALYTICS_ID') }}');
+    </script>
+@endif
+
+@if(env('GOOGLE_SITE_VERIFICTION'))
 <meta name="google-site-verification" content="{{ env('GOOGLE_SITE_VERIFICTION') }}" />
+@endif
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">

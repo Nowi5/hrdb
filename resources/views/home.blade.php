@@ -26,7 +26,7 @@
 
             <div class="row mb-3">
                 <div class="col-md-4">
-                    <div class="card text-white bg-success o-hidden h-100">
+                    <div class="card text-white bg-primary o-hidden h-100">
                         <div class="card-body">
                             <div class="card-body-icon">
                                 <i class="fa fa-briefcase"></i>

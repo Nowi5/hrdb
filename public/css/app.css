@@ -13681,6 +13681,12 @@ footer.footer a {
   margin-bottom: 0px;
 }
 
+/* Nav Tabs */
+
+.tryout .nav-tabs .nav-link:not(.active) {
+  border-color: #f8fafc #f8fafc transparent #f8fafc;
+}
+
 /* Vertical navigation e.g. for documenation */
 
 .vnav li.nav-item.active a.nav-link {

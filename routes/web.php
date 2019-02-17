@@ -32,6 +32,8 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('/passport', function () {  return view('passport.index');  })->name('passport');
 
     Route::group(['prefix' => '/docu', 'as' => 'docu.'], function () {
+        Route::get('/tryout', function () {  return view('docu.tryout-page');  })->name('tryout');
+
         Route::get('/access', function () {  return view('docu.access');  })->name('access');
         Route::get('/fetchingdata', function () {  return view('docu.fetchingdata');  })->name('fetchingdata');
 

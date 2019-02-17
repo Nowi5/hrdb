@@ -13,6 +13,9 @@
                         <li class="nav-item {{ Route::currentRouteNamed('docu.fetchingdata') ? 'active' : '' }}">
                             <a class="nav-link active" href="{{ route('docu.fetchingdata') }}">Fetching Data</a>
                         </li>
+                        <li class="nav-item {{ Route::currentRouteNamed('docu.tryout') ? 'active' : '' }}">
+                            <a class="nav-link active" href="{{ route('docu.tryout') }}">Test API</a>
+                        </li>
                         <li><div class="dropdown-divider"></div></li>
                         <li>Core Resources:</li>
                         <li class="nav-item {{ Route::currentRouteNamed('docu.jobpostings') ? 'active' : '' }}">
