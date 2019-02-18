@@ -43,9 +43,6 @@ class CreateJobpostingsTable extends Migration
             $table->integer('salary_high')->nullable();
             $table->unsignedInteger('salary_currency_id')->nullable();
 
-            /** Skills (n:m) will be also added via other table */
-            $table->text('skills')->nullable(); // free text, in best case separated with comma ,
-
             $table->date('posting_date')->nullable(); //date: The date on which this job was first published.
 
             $table->date('delete_date')->nullable();

@@ -51,7 +51,7 @@ class SimpleJobpostingResource extends BaseResource //JsonResource
             'salary' => $this->salary,
             // 'company' => $this->company->name,
 
-            'keywords' => $this->keywoards .  $this->skills,
+            'keywords' => $this->keywords .  implode(", ", $this->skills),
 
             // location has  'line1', 'line2', 'line3', 'number', 'street_id', 'city_id',
             'city' => $this->location->city->name,

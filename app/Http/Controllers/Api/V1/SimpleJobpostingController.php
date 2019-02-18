@@ -138,12 +138,23 @@ class SimpleJobpostingController extends Controller
                'description' => $data['title'],
                'apply_link' => $data['apply_link'],
                'salary' => $data['salary'],
-               'keywords' => $data['keywords'],
+               //'keywords' => $data['keywords'],
                'location_id' => $location->id,
                'language_id' => $language_id,
                'publisher_id' => auth('api')->user()->id
            ]
         );
+
+        // Get / Create related Skills
+        if($data['keywords']) {
+            $skills = explode(",", $data['keywords']);
+            $aSkillsIDs = [];
+            foreach ($skills as $skillname) {
+                $skill = Skill::firstOrCreate(['name' => $skillname]);
+                array_push($aSkillsIDs, $skill->id);
+            }
+            $jobposting->skills()->sync($aSkillsIDs, false);
+        }
 
         $msg = 'Jobposting successfully created!';
         return SimpleJobpostingResource::make($jobposting)
@@ -152,7 +163,7 @@ class SimpleJobpostingController extends Controller
 
     public function update(Request $request, Jobposting $jobposting)
     {
-        // No update
+        // No update -> Delete and create new
     }
 
     public function delete(Jobposting $jobposting)

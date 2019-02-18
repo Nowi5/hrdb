@@ -32,6 +32,18 @@ class CreateSkillsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        Schema::create('jobpostings_skills', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('jobposting_id');
+            $table->unsignedInteger('skill_id');
+            $table->foreign('jobposting_id')->references('id')->on('jobpostings');
+            $table->foreign('skill_id')->references('id')->on('skills');
+            //$table->string('type')->nullable(); // could have, must have
+            //$table->string('level')->nullable(); // beginner, expert, ...
+            $table->timestamps();
+            $table->softDeletes();
+        });
     }
 
     /**
@@ -43,5 +55,6 @@ class CreateSkillsTable extends Migration
     {
         Schema::dropIfExists('skills');
         Schema::dropIfExists('skills_skills');
+        Schema::dropIfExists('jobpostings_skills');
     }
 }

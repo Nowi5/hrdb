@@ -56,16 +56,40 @@ class SkillController extends Controller
         if ($skill->wasRecentlyCreated === true) {
             $msg = 'Skill successfully created!';
         } else {
-            $msg = 'Skill already existed!';
+            $msg = 'Skill already existed! ';
         }
+
+        // Add childs to skills
+        if($data['childs']) {
+            $aChildsIDs = [];
+            foreach ($data['childs'] as $child) {
+                $childskill = Skill::firstOrCreate(['name' => $child['name']]);
+                array_push($aChildsIDs, $childskill->id);
+            }
+            $skill->childs()->sync($aChildsIDs, false);
+            $msg .= 'Child skill added. ';
+        }
+
+        // Add parents to skills
+        if($data['parents']) {
+            $aParentsIDs = [];
+            foreach ($data['parents'] as $parent) {
+                $parentskill = Skill::firstOrCreate(['name' => $parent['name']]);
+                array_push($aParentsIDs, $parentskill->id);
+            }
+            $skill->parents()->sync($aParentsIDs, false);
+            $msg .= 'Parent skill added. ';
+        }
+        $skill->childs;
+        $skill->parents;
 
         return SkillResource::make($skill)
             ->additional(['message' => $msg]);
-
     }
 
     public function update(Request $request, Skill $skill)    
     {
+        //@todo: Implement good update, may just call the flexible store function
         $skill->update($request->all());
         return response()->json($skill, 200);
     }

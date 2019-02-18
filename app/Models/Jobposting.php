@@ -32,6 +32,11 @@ class Jobposting extends BaseModel
         return $this->belongsTo('App\Models\Location', 'location_id');
     }
 
+    public function skills()
+    {
+        return $this->belongsToMany('App\Models\Skill', 'jobpostings_skills', 'jobposting_id', 'skill_id');
+    }
+
     // @Todo: Add relationship for Workingtime, Industy, Exerpeiencelevel, Funtionalarea, Company
     // @Todo: Use Users's Organization as Publisher and not user_id
 }

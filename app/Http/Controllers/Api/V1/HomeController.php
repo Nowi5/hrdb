@@ -14,13 +14,17 @@ class HomeController extends Controller
         return response()->json(
             [   'links' =>
                 [
-                    'user'  => route('api.user'),
-                    'users' => route('api.users.index'),
+
                     'cities' => route('api.cities.index'),
-                   // 'postalcodes' => route('api.postalcodes.index'),
-                    'states' => route('api.states.index'),
                     'countries' => route('api.countries.index'),
                     'languages' => route('api.languages.index'),
+                    'jobpostings' => route('api.jobpostings.index'),
+                   // 'postalcodes' => route('api.postalcodes.index'),
+                    'skills' => route('api.skills.index'),
+                    'states' => route('api.states.index'),
+                    'user'  => route('api.user'),
+                    'users' => route('api.users.index'),
+
                 ]
             ]
         );
