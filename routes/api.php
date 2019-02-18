@@ -55,6 +55,9 @@ Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], funct
             Route::resource('streets', 'StreetController')->only([
                 'index', 'show', 'store', 'update'
             ]);
+            Route::resource('skills', 'SkillController')->only([
+                'index', 'show', 'store', 'update'
+            ]);
             Route::resource('simplejobpostings', 'SimpleJobpostingController')->only([
                 'index', 'show', 'store', 'update', 'delete'
             ]);
