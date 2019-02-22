@@ -48,6 +48,8 @@ class Install extends Command
         Artisan::call('migrate');
         $bar->advance();
         Artisan::call('db:seed');
+
+
         $bar->advance();
         Artisan::call('passport:install');
         $bar->advance();

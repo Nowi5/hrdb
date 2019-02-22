@@ -115,7 +115,7 @@
 
             $('#tryoutform-responsestatus').html("Loading...");
             $('#tryoutform-responsestatus').removeClass("text-success");
-            $('#tryoutform-responsestatus').removeClass("text-error");
+            $('#tryoutform-responsestatus').removeClass("text-danger");
             $('#tryoutform-responsetext').val("Loading...");
 
             $.ajax({

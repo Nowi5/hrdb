@@ -13,6 +13,7 @@ class LocationsSeeder extends Seeder
         //collect contents and pass to DB::unprepared
         DB::unprepared(file_get_contents($sql));
 
+        /*
         // Germany Cities
         $this->command->info("Load dump of German Cities");
         //path to sql file
@@ -26,5 +27,6 @@ class LocationsSeeder extends Seeder
         $sql = base_path('database/dumps/locations-germany-streets.sql');
         //collect contents and pass to DB::unprepared
         DB::unprepared(file_get_contents($sql));
+        */
     }
 }

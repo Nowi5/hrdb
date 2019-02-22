@@ -13,9 +13,10 @@ class Jobposting extends BaseModel
     protected $fillable = [
         'id','referencenumber','title','description','summary','summary_html','tasks','tasks_html','about_us',
         'about_us_html','benefits','benefits_html','salary','salary_low','salary_high','salary_currency_id',
-        'skills','posting_date','delete_date','company_id','jobtype_id','workingtime_id',
+        'posting_date','delete_date','company_id','jobtype_id','workingtime_id',
         'industry_id','experiencelevel_id','functionalarea_id','location_id','language_id','contact_id',
         'apply_link','pdf_link','video_link','backgroundimage_link','image_link','publisher_id'
+        //  'skills',
     ];
 
     public function currency()

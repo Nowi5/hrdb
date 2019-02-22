@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Seed;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -23,16 +24,26 @@ class DatabaseSeeder extends Seeder
         // Get all Seeders from DB
         $this->executedseeder = Seed::all()->pluck('seeder')->toArray();
 
+        // run seeders by class
+        $this->runSeeder(UsersSeeder::class);
         $this->runSeeder(LocationsSeeder::class);
+        $this->runSeeder(SkillsSeeder::class);
+        $this->runSeeder(JobpostingsSeeder::class);
+
+        $this->command->info("");
 
     }
 
     private function runSeeder($class){
         if(!in_array($class, $this->executedseeder)){
+            $this->command->info("");
             $this->command->info("Run Seeder: ".$class );
 
             // try {
-            $this->call($class);
+
+                Eloquent::unguard(); // does temporarily disable the mass assignment protection of the model
+                $this->call($class);
+                Eloquent::reguard();
             /* }
              catch(Exception $e){
                  $this->command->error("Error with Seeder '". $class ."'." );
@@ -45,6 +56,8 @@ class DatabaseSeeder extends Seeder
             $seed = Seed::create(
                 ['seeder' => $class]
             );
+            DB::commit(); // In case a Seeder is not closed, it should not impact the next loop
+            $this->command->info("Seeder '".$class."' successfully finished." );
         }
         else{
             $this->command->info("Seeder '". $class ."' not performed, as it were already executed in the past." );

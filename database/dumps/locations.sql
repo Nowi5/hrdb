@@ -1,27 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.8.4
--- https://www.phpmyadmin.net/
---
--- Host: mysql:3306
--- Erstellungszeit: 31. Jan 2019 um 06:31
--- Server-Version: 5.7.25
--- PHP-Version: 7.2.13
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Datenbank: `homestead`
---
-
 --
 -- Daten für Tabelle `countries`
 --
@@ -246,11 +222,20 @@ INSERT INTO `currencies` (`id`, `name`, `symbol`, `symbol_long`, `created_at`, `
 -- Daten für Tabelle `languages`
 --
 
-INSERT INTO `languages` (`id`, `iso2`, `name`, `name_long`, `name_local`, `name_english`, `created_at`, `updated_at`) VALUES
-(1, 'EN', 'Englisch', NULL, NULL, 'English', NULL, NULL),
-(2, 'DE', 'Deutsch', NULL, NULL, 'German', NULL, NULL);
-COMMIT;
+INSERT INTO
+  `languages` (`id`, `iso2`, `name`, `name_long`, `name_local`, `name_english`, `created_at`, `updated_at`)
+VALUES
+  (1, 'EN', 'English', NULL, NULL, 'English', NULL, NULL),
+  (2, 'DE', 'Deutsch', NULL, NULL, 'German', NULL, NULL),
+  (3, 'ES', 'Español', NULL, NULL, 'Spanish', NULL, NULL),
+  (4, 'FR', 'Français', NULL, NULL, 'French', NULL, NULL),
+  (5, 'IT', 'Italiano', NULL, NULL, 'Italian', NULL, NULL),
+  (6, 'PT', 'Português', NULL, NULL, 'Portuguese', NULL, NULL),
+  (7, 'NL', 'Nederlands', NULL, NULL, 'Dutch', NULL, NULL),
+  (8, 'ZH', 'China', NULL, NULL, 'Chinese', NULL, NULL),
+  (9, 'JA', 'Japan', NULL, NULL, 'Japanese', NULL, NULL);
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- 8 // 中国
+-- 9 // 日本の
+
+COMMIT;

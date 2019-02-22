@@ -15,7 +15,7 @@ class CreateSkillsTable extends Migration
     {
         Schema::create('skills', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name'); //The name of the skill.
+            $table->string('name')->unique()->collate('utf8_bin'); //The name of the unique skill.
 
             $table->unsignedInteger('language_id')->nullable(); //in case it is language specific
             $table->timestamps();
@@ -39,6 +39,7 @@ class CreateSkillsTable extends Migration
             $table->unsignedInteger('skill_id');
             $table->foreign('jobposting_id')->references('id')->on('jobpostings');
             $table->foreign('skill_id')->references('id')->on('skills');
+            // @todo: Add level and type
             //$table->string('type')->nullable(); // could have, must have
             //$table->string('level')->nullable(); // beginner, expert, ...
             $table->timestamps();
