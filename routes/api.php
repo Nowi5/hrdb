@@ -26,12 +26,9 @@ Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], funct
         Route::post('logout', 'AuthController@logout');
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
+        Route::patch('user', 'AuthController@update');
 
         Route::get('/', 'HomeController@index');
-
-        Route::get('/user', function (Request $request) {
-            return $request->user();
-        })->name('user');
 
         Route::group(['middleware' => ['verified']], function () {
             Route::resource('users', 'UserController')->only([

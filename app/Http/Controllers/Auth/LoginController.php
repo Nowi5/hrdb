@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+// use App\Http\Controllers\Auth\Request;
 
 class LoginController extends Controller
 {
@@ -35,5 +36,28 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function validateLogin( \Illuminate\Http\Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+    }
+
+    protected function sendLoginResponse(\Illuminate\Http\Request $request)
+    {
+
+        $request->session()->regenerate();
+        $this->clearLoginAttempts($request);
+
+        if ($request->expectsJson() || $request->is('api/*')) {
+            $response['message'] = 'Login successful';
+            $response['location'] = redirect()->intended($this->redirectPath())->getTargetUrl();
+            return response()->json($response, 200);
+        }
+
+        return $this->authenticated($request, $this->guard()->user())?: redirect()->intended($this->redirectPath());
     }
 }

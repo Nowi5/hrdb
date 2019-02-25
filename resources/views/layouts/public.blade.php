@@ -18,7 +18,18 @@
     </footer>
 </div>
 
-@include('components.chatbot')
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+</script>
+@stack('scripts')
+@include ('components.chatbot')
 
 </body>
 </html>

@@ -54,9 +54,16 @@ class Handler extends ExceptionHandler
                 'error' => 'Resource not found'
             ], 404);
         }
-        if (($request->expectsJson()  || $request->is('api/*'))) {
+
+        if (($request->expectsJson()  || $request->is('api/*'))
+            && get_class($exception) !== "Illuminate\Validation\ValidationException"
+            && get_class($exception) !== "Illuminate\Session\TokenMismatchException"
+        ){
+
             $error = $this->convertExceptionToResponse($exception);
             $response = [];
+            $response['code'] = $error->getStatusCode();
+
             if($error->getStatusCode() == 500) {
                 $response['error'] = $exception->getMessage();
                 if(Config::get('app.debug')) {
@@ -64,7 +71,13 @@ class Handler extends ExceptionHandler
                     $response['code'] = $exception->getCode();
                 }
             }
-            return response()->json($response, $error->getStatusCode());
+
+            if(get_class($exception) === "Illuminate\Session\TokenMismatchException"){
+                $response['error'] = "CSRF-Token invalid. Please refresh the page.";
+                $response['code'] = "419";
+            }
+
+            return response()->json($response, $response['code']);
         }
 
         return parent::render($request, $exception);
