@@ -33,6 +33,13 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('profile') }}">
+                                {{ __('Profile') }}
+                                @if( !Auth::user()->organization_id)
+                                    <span class="badge badge-danger">!</span>
+                                @endif
+                            </a>
+
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

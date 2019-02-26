@@ -68,6 +68,13 @@ Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], funct
             Route::resource('locations', 'LocationController')->only([
                 'index', 'show', 'store'
             ]);
+
+            Route::resource('organizations', 'OrganizationController')->only([
+                'index', 'show', 'store'
+            ]);
+            Route::get('organization', 'OrganizationController@userOrganization');
+            Route::patch('organization', 'OrganizationController@userOrganizationUpdate');
+
         }); //end verified
     }); //end auth api
 }); //end namespace api

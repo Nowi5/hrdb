@@ -37,7 +37,9 @@ window.Form = Form;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('login', require('./components/LoginComponent.vue').default);
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('profile-form', require('./components/profile/ProfileformComponent.vue').default);
+Vue.component('organization-form', require('./components/profile/OrganizationformComponent.vue').default);
+//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -59,6 +61,11 @@ Vue.component(
     'passport-personal-access-tokens',
     require('./components/passport/PersonalAccessTokens.vue').default
 );
+
+// https://codesandbox.io/s/3xyx386q65
+// https://stackoverflow.com/questions/47754830/vuejs-listening-for-event-on-component
+Vue.prototype.$vueEventBus = new Vue(); // Global event bus
+
 
 const app = new Vue({
     el: '#app'

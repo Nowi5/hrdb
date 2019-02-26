@@ -17,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'invite_id',
+        'name', 'email', 'password', 'invite_id','firstname','lastname','position_title', 'organization_id'
     ];
 
     /**
@@ -29,9 +29,31 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
+    // Relationships
     public function invites()
     {
         return $this->hasMany('App\Models\Invite', 'user_id');
+    }
+
+    public function organization()
+    {
+        return $this->belongsTo('App\Models\Organization', 'organization_id');
+    }
+
+    //Accessors and Mutators
+    public function getFirstnameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    public function getLirstnameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    public function getFullnameAttribute()
+    {
+        return "{$this->firstname} {$this->lastname}";
     }
 
 }

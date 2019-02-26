@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Models\User;
+use App\Models\Organization;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 use Carbon\Carbon;
+use App\Http\Resources\UserResource;
 
 class AuthController extends Controller
 {
@@ -24,7 +26,7 @@ class AuthController extends Controller
      */
     public function signup(Request $request)
     {
-        //@todo: Harmonize with exisiting Login & Register Controller
+        //@todo: Harmonize with existing Login & Register Controller
         $validation_array = [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -95,7 +97,7 @@ class AuthController extends Controller
             return response()->json([
                 'errors'  => $validator->errors(),
                 'message' => 'Login failed'
-            ], 401);
+            ], 422);
         }
 
         $credentials = request(['email', 'password']);
@@ -147,6 +149,48 @@ class AuthController extends Controller
      */
     public function user(Request $request)
     {
-        return response()->json($request->user());
+        UserResource::withoutWrapping();
+        return new UserResource($request->user());
+    }
+
+    public function update(Request $request)
+    {
+        // you can only update your own user!
+        $user = $request->user();
+        $data = $request->all();
+        $data['id']         = $user->id;
+        $data['isAdmin']    = null;
+
+        if(isset($data['email'])){
+            // @todo: If email changed, reset activation and resend link
+        }
+
+        //@todo: Harmonize with existing Login & Register Controller
+        $validation_array = [
+            'name' => ['string', 'max:255'],
+            'email' => ['string', 'email', 'max:255', 'unique:users'],
+            'firstname'  => ['string', 'max:255'],
+            'organization_name'  => ['string', 'max:255'],
+            'lastname'  => ['string', 'max:255'],
+            'position_title'  => ['string', 'max:255'],
+            'password' => ['string', 'min:6', 'confirmed', 'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/'],
+        ];
+
+        $validator = Validator::make($data, $validation_array);
+        if ($validator->fails()) {
+            return response()->json([
+                'errors'  => $validator->errors(),
+                'message' => 'User update failed.'
+            ], 419);
+        }
+
+        if(isset($data['organization_name'])){
+            $organization = Organization::firstOrCreate(['name' => $data['organization_name']]);
+            $data['organization_id'] = $organization->id;
+        }
+
+        $user->update($data);
+        UserResource::withoutWrapping();
+        return new UserResource($user);
     }
 }

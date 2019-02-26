@@ -53,7 +53,8 @@ class CreateJobpostingsTable extends Migration
              **/
 
             /** Company / Organization (will be added later) */
-            //$table->unsignedInteger('company_id');
+            //$table->unsignedInteger('organization_id');
+            // See other migration of organizations
 
             /**  Contract, Internship, Temp, Other */ //api - type
             //$table->unsignedInteger('jobtype_id')->nullable();

@@ -11,6 +11,10 @@
 |
 */
 
+/** Public routes */
+Auth::routes(['verify' => true]);
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+
 Route::get('/', function () {
     return view('public.welcome');
 });
@@ -25,10 +29,11 @@ Route::get('/datasecurity-terms_and_conditions', function () {
 
 Route::resource('contact', 'ContactController');
 
-Auth::routes(['verify' => true]);
 
+/** Routes for logged in user */
 Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/profile', function () { return view('profile.user'); })->name('profile');
     Route::get('/passport', function () {  return view('passport.index');  })->name('passport');
 
     Route::group(['prefix' => '/docu', 'as' => 'docu.'], function () {

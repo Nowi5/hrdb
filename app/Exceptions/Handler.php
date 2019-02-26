@@ -49,15 +49,19 @@ class Handler extends ExceptionHandler
     {
         // This will replace our 404 response with a JSON response.
         // https://www.toptal.com/laravel/restful-laravel-api-tutorial
-        if (($request->expectsJson()  || $request->is('api/*')) && $exception instanceof ModelNotFoundException) {
+        if (($request->expectsJson()  || $request->is('api/*'))
+            && $exception instanceof ModelNotFoundException) {
             return response()->json([
                 'error' => 'Resource not found'
             ], 404);
         }
 
+        $exceptionClass = get_class($exception);
+        //dd($exceptionClass);
         if (($request->expectsJson()  || $request->is('api/*'))
-            && get_class($exception) !== "Illuminate\Validation\ValidationException"
-            && get_class($exception) !== "Illuminate\Session\TokenMismatchException"
+            && $exceptionClass !== "Illuminate\Validation\ValidationException"
+            && $exceptionClass !== "Illuminate\Session\TokenMismatchException"
+            && $exceptionClass !== "Symfony\Component\HttpKernel\Exception\NotFoundHttpException"
         ){
 
             $error = $this->convertExceptionToResponse($exception);
@@ -68,7 +72,7 @@ class Handler extends ExceptionHandler
                 $response['error'] = $exception->getMessage();
                 if(Config::get('app.debug')) {
                     $response['trace'] = $exception->getTraceAsString();
-                    $response['code'] = $exception->getCode();
+                    $response['code'] = $exception->getCode()!=0?$exception->getCode():500;
                 }
             }
 
@@ -76,8 +80,12 @@ class Handler extends ExceptionHandler
                 $response['error'] = "CSRF-Token invalid. Please refresh the page.";
                 $response['code'] = "419";
             }
-
-            return response()->json($response, $response['code']);
+            if(!isset($response['code']) || $response['code'] == 0){
+                return response()->json($response, 500);
+            }
+            else {
+                return response()->json($response, $response['code']);
+            }
         }
 
         return parent::render($request, $exception);

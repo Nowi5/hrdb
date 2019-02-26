@@ -113,11 +113,12 @@ class SimpleJobpostingController extends Controller
         $pattern        = '#^([\w[:punct:] ]+) ([0-9]{1,5})([\w[:punct:]\-/]*)$#';
         $matchResult    = preg_match($pattern, $data['streetaddress'], $aMatch);
 
-        $streetname        = (isset($aMatch[1])) ? $aMatch[1] : '';
+        $streetname     = (isset($aMatch[1])) ? $aMatch[1] : '';
         $number         = (isset($aMatch[2])) ? $aMatch[2] : '';
         $numberAddition = (isset($aMatch[3])) ? $aMatch[3] : '';
 
-         $street = Street::firstOrCreate([
+        //@todo: Replace by StreetRepository
+        $street = Street::firstOrCreate([
                 'name' => $streetname,
                 'city_id' => $city->id
             ]);

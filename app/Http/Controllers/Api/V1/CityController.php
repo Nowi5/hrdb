@@ -55,11 +55,13 @@ class CityController extends Controller
             'country_id'   => ['required', 'integer']
         ]);
 
+        // can be replaced just by using -> validate();
+        //@todo: Replace all validation errors from 401 by 422
         if ($validator->fails()) {
             return response()->json([
                 'errors'  => $validator->errors(),
                 'message' => 'Creating City failed'
-            ], 401);
+            ], 422);
         }
 
         $city = City::firstOrCreate(

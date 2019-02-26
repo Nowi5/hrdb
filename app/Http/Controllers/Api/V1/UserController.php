@@ -16,16 +16,24 @@ class UserController extends Controller
     public function index()
     {
         $users = QueryBuilder::for(User::class)
-            ->allowedFilters('name', 'email')
+            ->allowedFilters('name', 'email', 'organization.name')
+            ->allowedIncludes('organization')
             ->paginate();
 
-        return UserResource::collection($users);
+        return UserResource::collection($users)
+            ->hide(['email','firstname','lastname']);
+
     }
 
     public function show(User $user)
     {
         UserResource::withoutWrapping();
-        return new UserResource($user);
+        if($user->id == \Auth::user()->id){
+            return new UserResource($user);
+        }
+        else{
+            $userResource = new UserResource($user);
+            return $userResource->hide(['email']);
+        }
     }
-
 }
